@@ -17,3 +17,31 @@ void ATankPlayerController::BeginPlay() {
 		UE_LOG(LogTemp, Warning, TEXT("Player Controller possessing: %s"), *ControlledTank->GetName());
 	}	
 }
+
+void ATankPlayerController::Tick(float DeltaTime) {
+	Super::Tick(DeltaTime);
+	AimTowardsCrosshair();
+}
+
+void ATankPlayerController::AimTowardsCrosshair() {
+
+	if (!GetControlledTank()) { return; }
+	FVector OutHitLocation; //out parameter
+
+	if (GetSightRayHitLocation(OutHitLocation)) {
+		/*UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *OutHitLocation.ToString());*/
+	}
+}
+
+//out parameter is sent in here then returns changed
+bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const {
+
+	//Find the cross-hair position in pixel coordinates
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);
+	auto ScreenLocation = FVector2D((ViewportSizeX*CrossHairXLocation), (ViewportSizeY*CrossHairYLocation));
+
+	return true;
+}
+
+

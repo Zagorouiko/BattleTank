@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Tank.h"
-#include "Runtime/Engine/Classes/GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
@@ -18,6 +19,7 @@ class BATTLETANK_API ATankAIController : public AAIController
 
 public:
 	void BeginPlay() override;
+
 	ATank* GetControlledTank() const;
 	
 	ATank* GetPlayerTank() const;

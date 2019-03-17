@@ -7,6 +7,10 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+//Forward declaration, allows you to reference UtankBarrel type in the header.
+//This essentially lets you define more than one class in the header file
+//Remember, most of the time headers should only be included in the cpp unless inheriting from a class
+class UTankBarrel;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
@@ -21,7 +25,7 @@ public:
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 	void MoveBarrelTowards(FVector AimDirection);
 
@@ -30,5 +34,5 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UStaticMeshComponent* Barrel = nullptr;
+	UTankBarrel* Barrel = nullptr;
 };

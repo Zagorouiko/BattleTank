@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
 #include "Engine/World.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "GameFramework/PlayerController.h"
@@ -12,6 +11,9 @@
 /**
  * 
  */
+
+class ATank;
+
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
 {

@@ -10,6 +10,7 @@
 //Forward declaration, allows you to reference UtankBarrel type in the header.
 //This essentially lets you define more than one class in the header file
 //Remember, most of the time headers should only be included in the cpp unless inheriting from a class
+
 class UTankBarrel;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )

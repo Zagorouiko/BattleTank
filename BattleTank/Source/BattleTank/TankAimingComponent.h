@@ -33,8 +33,6 @@ public:
 
 	void MoveBarrelTowards(FVector AimDirection);
 
-	void MoveTurretTowards(FVector AimDirection);
-
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

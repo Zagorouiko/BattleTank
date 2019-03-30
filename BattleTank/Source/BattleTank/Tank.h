@@ -24,6 +24,7 @@ public:
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
+
 public:	
 	void AimAt(FVector HitLocation);
 
@@ -36,6 +37,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTankTurret* TurretToSet);
 
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile_> ProjectileBlueprint;
+
 private:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -47,9 +51,6 @@ private:
 	float LaunchSpeed = 4000.0; //1000 m/s
 
 	ATank();
-
-	UPROPERTY(EditAnywhere, Category = Setup)
-	TSubclassOf<AProjectile_> ProjectileBlueprint;
 
 	UTankBarrel* Barrel = nullptr;
 

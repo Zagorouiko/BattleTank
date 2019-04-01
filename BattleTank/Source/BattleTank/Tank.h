@@ -37,7 +37,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTankTurret* TurretToSet);
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile_> ProjectileBlueprint;
 
 private:
@@ -47,13 +47,14 @@ private:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000.0; //1000 m/s
 
 	ATank();
 
 	UTankBarrel* Barrel = nullptr;
 
+	UPROPERTY(EditDefaultsOnly)
 	float ReloadTimeInSeconds = 3;
 
 	double LastFireTime = 0;

@@ -12,6 +12,10 @@ void ATankAIController::Tick(float DeltaTime) {
 	
 
 	if(PlayerTank) {
+
+		//This passes information to the the tank movement components "RequestDirectMove()" overrided function. Super abstract
+		MoveToActor(PlayerTank, AcceptanceRadius);
+
 		ControlledTank->AimAt(PlayerTank->GetActorLocation());
 		ControlledTank->Fire();
 	}	

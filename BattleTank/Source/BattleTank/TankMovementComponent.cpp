@@ -22,10 +22,14 @@ void UTankMovementComponent::IntendTurnRight(float Throw) {
 
 //Receives information from the tankAI controller "MoveToActor()" function
 void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) {
+
 	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();  
 	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
 
 	auto DotProductThrow =  FVector::DotProduct(TankForward, AIForwardIntention);
+	auto CrossProductThrow = FVector::CrossProduct(TankForward, AIForwardIntention);
+
 	IntendMoveForward(DotProductThrow);
+	IntendTurnRight(CrossProductThrow.Z);
 	//UE_LOG(LogTemp, Warning, TEXT("%s Vectoring to %s"), *TankName, *MoveVelocity.ToString());
 }

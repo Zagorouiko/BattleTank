@@ -23,9 +23,12 @@ public:
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
 
-private:
+protected:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 	ATank* GetControlledTank() const;
 
+private:
+	
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
 
 	bool GetLookDirection(FVector2D Screenlocation, FVector& LookDirection) const;

@@ -31,5 +31,5 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 
 	IntendMoveForward(DotProductThrow);
 	IntendTurnRight(CrossProductThrow.Z);
-	//UE_LOG(LogTemp, Warning, TEXT("%s Vectoring to %s"), *TankName, *MoveVelocity.ToString());
+	UE_LOG(LogTemp, Warning, TEXT("Vectoring to %s"), *AIForwardIntention.ToString());
 }

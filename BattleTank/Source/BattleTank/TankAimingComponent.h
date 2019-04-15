@@ -11,6 +11,13 @@
 //This essentially lets you define more than one class in the header file
 //Remember, most of the time headers should only be included in the cpp unless inheriting from a class
 
+UENUM()
+enum class EFiringStatus : uint8 {
+	Reloading,
+	Aiming,
+	Locked
+};
+
 class UTankBarrel;
 class UTankTurret;
 
@@ -20,6 +27,8 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
+	UFUNCTION(BluePrintCallable, Category = Setup)
+	void Initialize(UTankBarrel* Barrel, UTankTurret* Turret);
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
@@ -37,8 +46,12 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	UPROPERTY(BlueprintReadOnly, Category = "State")
+	EFiringStatus FiringStatus = EFiringStatus::Aiming;
+
 private:
 	UTankBarrel* Barrel = nullptr;
 
 	UTankTurret* Turret = nullptr;
+
 };

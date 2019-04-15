@@ -34,6 +34,11 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
+void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet) {
+	SetBarrelReference(BarrelToSet);
+	SetTurretReference(TurretToSet);
+}
+
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet) {
 	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;

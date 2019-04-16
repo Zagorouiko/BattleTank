@@ -28,17 +28,12 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 
 public:	
 	UFUNCTION(BluePrintCallable, Category = Setup)
-	void Initialize(UTankBarrel* Barrel, UTankTurret* Turret);
+	void Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 	// Sets default values for this component's properties
-	UTankAimingComponent();
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
-
-	void SetTurretReference(UTankTurret* TurretToSet);
 
 	void MoveBarrelTowards(FVector AimDirection);
 
@@ -51,7 +46,7 @@ protected:
 
 private:
 	UTankBarrel* Barrel = nullptr;
-
 	UTankTurret* Turret = nullptr;
 
+	UTankAimingComponent();
 };

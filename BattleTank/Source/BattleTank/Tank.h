@@ -30,6 +30,8 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	UTankMovementComponent* TankMovementComponent = nullptr;
 
+	virtual void BeginPlay() override;
+
 public:	
 	void AimAt(FVector HitLocation);
 

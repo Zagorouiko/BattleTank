@@ -17,10 +17,21 @@ ATank::ATank()
 void ATank::BeginPlay() {
 	Super::BeginPlay(); //ALWAYS NEEDED FOR BP "BEGIN PLAY" TO RUN
 	//UE_LOG(LogTemp, Warning, TEXT("DONKEY: Tank.cpp Being Play"));
+
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATank::AimAt(FVector HitLocation) {
 	if (!ensure(TankAimingComponent)) { return; }
+	//UE_LOG(LogTemp, Warning, TEXT("Aiming component is set"));
+
+	if (TankAimingComponent) {
+		FoundAimingComponent(TankAimingComponent);
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("Player controller cant find aiming component in being play"));
+	}
+
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 

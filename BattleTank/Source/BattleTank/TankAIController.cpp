@@ -11,7 +11,7 @@ void ATankAIController::Tick(float DeltaTime) {
 	auto ControlledTank = Cast<ATank>(GetPawn());
 	
 
-	if(PlayerTank) {
+	if(ensure(PlayerTank)) {
 
 		//This passes information to the the tank movement components "RequestDirectMove()" overrided function. Super abstract
 		MoveToActor(PlayerTank, AcceptanceRadius);

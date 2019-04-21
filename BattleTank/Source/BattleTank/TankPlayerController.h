@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
 #include "Engine/World.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "GameFramework/PlayerController.h"
@@ -25,9 +24,6 @@ public:
 	void Tick(float DeltaTime) override;
 
 protected:
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	ATank* GetControlledTank() const;
-
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 
@@ -50,4 +46,6 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000.f;
+
+	float LaunchSpeed = 4000.0;
 };

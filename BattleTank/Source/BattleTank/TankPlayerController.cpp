@@ -7,7 +7,8 @@
 void ATankPlayerController::BeginPlay() {
 	Super::BeginPlay();
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-
+	//log here
+	UE_LOG(LogTemp, Warning, TEXT("BEGINPLAY TankController"));
 	if (!ensure(AimingComponent)) {	return;	}
 	FoundAimingComponent(AimingComponent);
 }

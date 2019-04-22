@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/ActorComponent.h"
+#include "Projectile_.h"
 #include "TankAimingComponent.generated.h"
 
 //Forward declaration, allows you to reference UtankBarrel type in the header.
@@ -37,19 +38,30 @@ public:
 
 	void MoveBarrelTowards(FVector AimDirection);
 
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	TSubclassOf<AProjectile_> ProjectileBlueprint;
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void Fire();
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringStatus FiringStatus = EFiringStatus::Aiming;
+	EFiringStatus FiringStatus = EFiringStatus::Reloading;
 
 private:
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
 
+	UTankAimingComponent();
+
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000.0;
 
-	UTankAimingComponent();
+	UPROPERTY(EditDefaultsOnly)
+	float ReloadTimeInSeconds = 3;
+
+	double LastFireTime = 0;
 };

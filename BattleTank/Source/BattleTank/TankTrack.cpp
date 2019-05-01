@@ -9,10 +9,11 @@ void UTankTrack::BeginPlay() {
 
 void UTankTrack::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit) {
 	UE_LOG(LogTemp, Warning, TEXT("On hit"));
+	ApplySidewaysForce();
 }
 
 UTankTrack::UTankTrack() {
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 }
 
 void UTankTrack::SetThrottle(float Throttle) {
@@ -26,11 +27,11 @@ void UTankTrack::SetThrottle(float Throttle) {
 	TankRoot->AddForceAtLocation(ForceApplied, ForceLocation);
 }
 
-void UTankTrack::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	//UE_LOG(LogTemp, Warning, TEXT("Track ticking"));
+void UTankTrack::ApplySidewaysForce() {
 
 	auto SlippageSpeed = FVector::DotProduct(GetRightVector(), GetComponentVelocity());
+
+	auto DeltaTime = GetWorld()->GetDeltaSeconds();
 	auto CorrectionAcceleration = -SlippageSpeed / DeltaTime * GetRightVector();
 
 	//grabs Tank BP, then gets root which is the tank, then casts it to a static mesh which lets you access the tanks static mesh which as the physics properties

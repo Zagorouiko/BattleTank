@@ -8,8 +8,11 @@ void UTankTrack::BeginPlay() {
 }
 
 void UTankTrack::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit) {
-	UE_LOG(LogTemp, Warning, TEXT("On hit"));
+	//UE_LOG(LogTemp, Warning, TEXT("On hit"));
+	UE_LOG(LogTemp, Warning, TEXT("%f"), CurrentThrottle);
+	DriveTrack();
 	ApplySidewaysForce();
+	CurrentThrottle = 0;
 }
 
 UTankTrack::UTankTrack() {
@@ -17,8 +20,12 @@ UTankTrack::UTankTrack() {
 }
 
 void UTankTrack::SetThrottle(float Throttle) {
+	CurrentThrottle = FMath::Clamp<float>(CurrentThrottle + Throttle, -1, 1);
+}
 
-	auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDrivingForce;
+void UTankTrack::DriveTrack() {
+	UE_LOG(LogTemp, Warning, TEXT("Driving track"));
+	auto ForceApplied = GetForwardVector() * CurrentThrottle * TrackMaxDrivingForce;
 	auto ForceLocation = GetComponentLocation();
 
 	//Gets root component(tank BP). then goes down to the "tank"(static mesh), then casts the static mesh(tank) to a primitive (up the hierarchy)

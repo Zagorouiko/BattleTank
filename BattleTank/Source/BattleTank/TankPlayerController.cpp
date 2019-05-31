@@ -26,7 +26,9 @@ void ATankPlayerController::AimTowardsCrosshair() {
 	if (!ensure(AimingComponent)) { return; }
 	FVector OutHitLocation; //out parameter
 
-	if (GetSightRayHitLocation(OutHitLocation)) {
+	bool bGotHitLocation = GetSightRayHitLocation(OutHitLocation);
+	UE_LOG(LogTemp, Warning, TEXT("bGotHitLocation: %i"), bGotHitLocation);
+	if (bGotHitLocation) {
 		//Passes out parameter of hit location into the tank.cpp "aim at" function
 		AimingComponent->AimAt(OutHitLocation);
 	}
@@ -44,12 +46,10 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 	FVector LookDirection;
 	if (GetLookDirection(ScreenLocation, LookDirection)) {
 		//Line trace along that Look direction and see what we hit (up to a max range)
-		GetLookVectorHitLocation(LookDirection, OutHitLocation);	
+		return GetLookVectorHitLocation(LookDirection, OutHitLocation);	
 	}
 
-	
-
-	return true;
+	return false;
 }
 
 //Deproject screen position of the cross hair to a world direction

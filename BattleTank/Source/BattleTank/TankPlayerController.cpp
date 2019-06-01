@@ -7,8 +7,6 @@
 void ATankPlayerController::BeginPlay() {
 	Super::BeginPlay();
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-	//log here
-	UE_LOG(LogTemp, Warning, TEXT("BEGINPLAY TankController"));
 	if (!ensure(AimingComponent)) {	return;	}
 	FoundAimingComponent(AimingComponent);
 }
@@ -48,7 +46,6 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 		//Line trace along that Look direction and see what we hit (up to a max range)
 		return GetLookVectorHitLocation(LookDirection, OutHitLocation);	
 	}
-
 	return false;
 }
 
@@ -60,7 +57,7 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& 
 
 }
 
-bool ATankPlayerController::GetLookVectorHitLocation(FVector& LookDirection, FVector& OutHitLocation) const {
+bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& OutHitLocation) const {
 
 	FHitResult HitResult;
 	auto StartLocation = PlayerCameraManager->GetCameraLocation();

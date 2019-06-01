@@ -19,7 +19,7 @@ public:
 	void SetThrottle(float Throttle);
 
 	UPROPERTY(EditDefaultsOnly)
-	float TrackMaxDrivingForce = 400000;
+	float TrackMaxDrivingForce = 4000000;
 
 	virtual void BeginPlay() override;
 

@@ -27,14 +27,13 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 
-
 private:
 	
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
 
 	bool GetLookDirection(FVector2D Screenlocation, FVector& LookDirection) const;
 
-	bool GetLookVectorHitLocation(FVector& LookDirection, FVector& OutHitLocation) const;
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector& OutHitLocation) const;
 
 	void AimTowardsCrosshair();
 

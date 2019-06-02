@@ -21,7 +21,8 @@ public:
 
 	void Tick(float DeltaTime) override;
 
+protected:
 	//how close can the AI tank get
-	float AcceptanceRadius = 1;
-
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	float AcceptanceRadius = 8000;
 };

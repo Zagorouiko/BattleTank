@@ -10,8 +10,16 @@ AProjectile_::AProjectile_()
 	PrimaryActorTick.bCanEverTick = true;
 
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement"));
+
 	CollisionMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Collision Mesh"));
+	//SetRootComponent(CollisionMesh);
+	//CollisionMesh->SetNotifyRigidBodyCollision(true);
+	//CollisionMesh->SetVisibility(false);
+
 	LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Particle Component"));
+	LaunchBlast->AttachTo(RootComponent);
+
+	
 
 	ProjectileMovementComponent->bAutoActivate = false;
 

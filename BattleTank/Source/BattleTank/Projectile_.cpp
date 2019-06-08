@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Projectile_.h"
+#include "Engine/Classes/Components/PrimitiveComponent.h"
+#include "Engine/Classes/Components/SceneComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 
 // Sets default values
@@ -12,10 +14,10 @@ AProjectile_::AProjectile_()
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement"));
 
 	CollisionMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Collision Mesh"));
-	//SetRootComponent(CollisionMesh);
+	SetRootComponent(Cast<USceneComponent>(CollisionMesh));
 	//CollisionMesh->SetNotifyRigidBodyCollision(true);
 	//CollisionMesh->SetVisibility(false);
-
+	
 	LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Particle Component"));
 	LaunchBlast->AttachTo(RootComponent);
 
